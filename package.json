@@ -1,0 +1,7 @@
+{
+	"name": "redux-workers",
+	"version": "0.1.0",
+	"peerDependencies": {
+		"redux": ">=3.0"
+	}
+}
