@@ -4,7 +4,10 @@ const magicKey = '@@redux-remote';
 
 export default (worker, options = {}) => ({dispatch}) => {
   const {
-    prepareAction = ({broadcast, ...action}) => broadcast ? action : null,
+    prepareAction = ({meta = {}, ...action}) => {
+      ({broadcast, ...meta} = meta);
+      return broadcast ? {meta, ...action} : null;
+    },
   } = options;
 
   worker.onmessage = wrap(worker.onmessage, (onmessage, message) => {
