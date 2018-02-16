@@ -5,8 +5,8 @@ const magicKey = '@@redux-remote';
 export default (worker, options = {}) => ({dispatch}) => {
   const {
     prepareAction = ({meta = {}, ...action}) => {
-      ({broadcast, ...meta} = meta);
-      return broadcast ? {meta, ...action} : null;
+      const {broadcast, ...restMeta} = meta;
+      return broadcast ? {meta: restMeta, ...action} : null;
     },
   } = options;
 
